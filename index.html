@@ -1,152 +1,41 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Angkatan Hub</title>
+<!doctype html>
+<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#123b86"><title>Angkatan Hub</title>
 <style>
-:root{--navy:#123b86;--blue:#1d5bd1;--bg:#f5f7fb;--text:#172033;--muted:#718096;--green:#20a05a;--red:#e5484d;--orange:#ef9b22;--white:#fff;--border:#e6eaf1}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text)}
-button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}.app{display:flex;min-height:100vh}
-.sidebar{width:240px;background:var(--navy);color:#fff;padding:22px 16px;position:fixed;inset:0 auto 0 0}
-.brand{font-size:22px;font-weight:800;padding:10px 12px 28px}.brand small{display:block;font-size:11px;opacity:.7;margin-top:4px;font-weight:500}
-.nav button{width:100%;background:transparent;color:#dce8ff;text-align:left;padding:12px 14px;border-radius:10px;margin:3px 0}.nav button.active,.nav button:hover{background:rgba(255,255,255,.13);color:#fff}
-.main{margin-left:240px;flex:1;padding:24px;max-width:1500px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}.top h1{margin:0;font-size:26px}.role{display:flex;gap:8px;align-items:center;background:#fff;padding:8px 12px;border-radius:12px;border:1px solid var(--border)}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:0 3px 14px rgba(20,40,80,.04)}.metric .label{color:var(--muted);font-size:13px}.metric .value{font-size:25px;font-weight:800;margin-top:7px}.green{color:var(--green)}.red{color:var(--red)}.orange{color:var(--orange)}
-.section{margin-top:18px}.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.section-head h2{font-size:18px;margin:0}
-.btn{background:var(--blue);color:#fff;border-radius:10px;padding:10px 14px;font-weight:700}.btn.secondary{background:#eef3ff;color:var(--blue)}.btn.danger{background:#ffe9ea;color:var(--red)}.btn.success{background:#e7f8ef;color:var(--green)}
-.two{display:grid;grid-template-columns:1.25fr 1fr;gap:16px}.list{display:flex;flex-direction:column;gap:10px}.row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px;border:1px solid var(--border);border-radius:12px}.row strong{display:block}.row small{color:var(--muted)}.badge{font-size:11px;padding:5px 8px;border-radius:999px;font-weight:700;background:#edf1f7}.badge.wait{background:#fff3d8;color:#a96a00}.badge.ok{background:#e6f8ee;color:#16804a}.badge.no{background:#ffe8e9;color:#b82e34}
-.progress{height:8px;background:#edf0f5;border-radius:99px;overflow:hidden;margin-top:8px}.progress span{display:block;height:100%;background:#28ad63}
-.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse}.table th,.table td{padding:11px;border-bottom:1px solid var(--border);text-align:left;font-size:13px}.table th{color:var(--muted)}
-.page{display:none}.page.active{display:block}
-.modal-bg{display:none;position:fixed;inset:0;background:rgba(10,25,55,.45);align-items:center;justify-content:center;padding:20px;z-index:10}.modal{background:#fff;border-radius:18px;width:min(560px,100%);padding:22px}.modal h2{margin-top:0}.form{display:grid;gap:11px}.form label{font-size:12px;color:var(--muted);font-weight:700}.form input,.form select,.form textarea{width:100%;padding:11px;border:1px solid var(--border);border-radius:10px;outline:none}.form textarea{min-height:80px;resize:vertical}.actions{display:flex;justify-content:flex-end;gap:8px;margin-top:8px}
-.chart{height:190px;display:flex;align-items:flex-end;gap:14px;padding:12px 8px}.bar{flex:1;display:flex;flex-direction:column;align-items:center;gap:7px;font-size:11px;color:var(--muted)}.bar i{width:100%;max-width:55px;background:#2b65d9;border-radius:8px 8px 2px 2px;display:block}
-.empty{color:var(--muted);padding:18px;text-align:center}
-@media(max-width:900px){.sidebar{width:72px}.brand{font-size:0}.brand:before{content:"AH";font-size:20px;font-weight:800}.brand small{display:none}.nav button{font-size:0;text-align:center}.nav button:first-letter{font-size:18px}.main{margin-left:72px}.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}}
-@media(max-width:600px){.main{padding:14px}.grid{grid-template-columns:1fr 1fr;gap:9px}.metric .value{font-size:18px}.top h1{font-size:20px}.role{font-size:11px}.sidebar{display:none}.main{margin-left:0}.two{grid-template-columns:1fr}}
-</style>
-</head>
-<body>
-<div class="app">
-<aside class="sidebar">
-  <div class="brand">ANGKATAN HUB<small>Keuangan & Operasional</small></div>
-  <div class="nav">
-    <button class="active" onclick="showPage('dashboard',this)">🏠 Dashboard</button>
-    <button onclick="showPage('finance',this)">💰 Keuangan</button>
-    <button onclick="showPage('requests',this)">📋 Pengajuan Dana</button>
-    <button onclick="showPage('activities',this)">🎯 Kegiatan</button>
-    <button onclick="showPage('members',this)">👥 Anggota</button>
-    <button onclick="showPage('reports',this)">📊 Laporan</button>
-  </div>
-</aside>
-
-<main class="main">
-<div class="top"><h1 id="pageTitle">Dashboard</h1><div class="role">Peran: <select id="role" onchange="render()"><option>Ketua</option><option>Bendahara</option><option>Koordinator Divisi</option><option>Anggota</option><option>Admin</option></select></div></div>
-
-<section id="dashboard" class="page active">
-  <div class="grid">
-    <div class="card metric"><div class="label">Saldo Angkatan</div><div class="value" id="mSaldo">Rp0</div></div>
-    <div class="card metric"><div class="label">Total Pemasukan</div><div class="value green" id="mIn">Rp0</div></div>
-    <div class="card metric"><div class="label">Total Pengeluaran</div><div class="value red" id="mOut">Rp0</div></div>
-    <div class="card metric"><div class="label">Pengajuan Menunggu</div><div class="value orange" id="mWait">0</div></div>
-  </div>
-  <div class="two section">
-    <div class="card"><div class="section-head"><h2>Kegiatan Berjalan</h2><button class="btn secondary" onclick="showPage('activities')">Lihat semua</button></div><div id="dashActivities" class="list"></div></div>
-    <div class="card"><div class="section-head"><h2>Pengajuan Terbaru</h2><button class="btn secondary" onclick="showPage('requests')">Buka</button></div><div id="dashRequests" class="list"></div></div>
-  </div>
-</section>
-
-<section id="finance" class="page">
-  <div class="section-head"><h2>Transaksi Keuangan</h2><div><button class="btn" onclick="openModal('income')">+ Pemasukan</button> <button class="btn danger" onclick="openModal('expense')">+ Pengeluaran</button></div></div>
-  <div class="card table-wrap"><table class="table"><thead><tr><th>Tanggal</th><th>Jenis</th><th>Keterangan</th><th>Kegiatan</th><th>Nominal</th></tr></thead><tbody id="txTable"></tbody></table></div>
-</section>
-
-<section id="requests" class="page">
-  <div class="section-head"><h2>Pengajuan Dana</h2><button class="btn" onclick="openModal('request')">+ Ajukan Dana</button></div>
-  <div id="requestList" class="list"></div>
-</section>
-
-<section id="activities" class="page">
-  <div class="section-head"><h2>Kegiatan Angkatan</h2><button class="btn" onclick="openModal('activity')">+ Kegiatan</button></div>
-  <div id="activityList" class="list"></div>
-</section>
-
-<section id="members" class="page">
-  <div class="section-head"><h2>Anggota Angkatan</h2></div>
-  <div class="card table-wrap"><table class="table"><thead><tr><th>Nama</th><th>Divisi</th><th>Status</th></tr></thead><tbody id="memberTable"></tbody></table></div>
-</section>
-
-<section id="reports" class="page">
-  <div class="grid">
-    <div class="card metric"><div class="label">Pemasukan</div><div class="value green" id="rIn">Rp0</div></div>
-    <div class="card metric"><div class="label">Pengeluaran</div><div class="value red" id="rOut">Rp0</div></div>
-    <div class="card metric"><div class="label">Saldo Akhir</div><div class="value" id="rSaldo">Rp0</div></div>
-    <div class="card metric"><div class="label">Jumlah Transaksi</div><div class="value" id="rCount">0</div></div>
-  </div>
-  <div class="card section"><div class="section-head"><h2>Pengeluaran per Kegiatan</h2><button class="btn secondary" onclick="downloadReport()">Export CSV</button></div><div id="chart" class="chart"></div></div>
-</section>
-</main>
-</div>
-
+:root{--navy:#123b86;--blue:#1d5bd1;--bg:#f5f7fb;--text:#172033;--muted:#718096;--green:#20a05a;--red:#e5484d;--orange:#ef9b22;--white:#fff;--border:#e6eaf1}*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text)}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}.hidden{display:none!important}.app{display:flex;min-height:100vh}.sidebar{width:240px;background:var(--navy);color:#fff;padding:22px 16px;position:fixed;inset:0 auto 0 0}.brand{font-size:22px;font-weight:800;padding:10px 12px 28px}.brand small{display:block;font-size:11px;opacity:.7;margin-top:4px;font-weight:500}.nav button{width:100%;background:transparent;color:#dce8ff;text-align:left;padding:12px 14px;border-radius:10px;margin:3px 0}.nav button.active,.nav button:hover{background:rgba(255,255,255,.13);color:#fff}.main{margin-left:240px;flex:1;padding:24px;max-width:1500px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;gap:10px}.top h1{margin:0;font-size:26px}.role{display:flex;gap:8px;align-items:center;background:#fff;padding:8px 12px;border-radius:12px;border:1px solid var(--border)}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:0 3px 14px rgba(20,40,80,.04)}.metric .label{color:var(--muted);font-size:13px}.metric .value{font-size:25px;font-weight:800;margin-top:7px}.green{color:var(--green)}.red{color:var(--red)}.orange{color:var(--orange)}.section{margin-top:18px}.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:10px}.section-head h2{font-size:18px;margin:0}.btn{background:var(--blue);color:#fff;border-radius:10px;padding:10px 14px;font-weight:700}.btn.secondary{background:#eef3ff;color:var(--blue)}.btn.danger{background:#ffe9ea;color:var(--red)}.btn.success{background:#e7f8ef;color:var(--green)}.two{display:grid;grid-template-columns:1.25fr 1fr;gap:16px}.list{display:flex;flex-direction:column;gap:10px}.row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px;border:1px solid var(--border);border-radius:12px}.row strong{display:block}.row small{color:var(--muted)}.badge{font-size:11px;padding:5px 8px;border-radius:999px;font-weight:700;background:#edf1f7}.badge.wait{background:#fff3d8;color:#a96a00}.badge.ok{background:#e6f8ee;color:#16804a}.badge.no{background:#ffe8e9;color:#b82e34}.progress{height:8px;background:#edf0f5;border-radius:99px;overflow:hidden;margin-top:8px}.progress span{display:block;height:100%;background:#28ad63}.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse}.table th,.table td{padding:11px;border-bottom:1px solid var(--border);text-align:left;font-size:13px}.table th{color:var(--muted)}.page{display:none}.page.active{display:block}.modal-bg{display:none;position:fixed;inset:0;background:rgba(10,25,55,.45);align-items:center;justify-content:center;padding:20px;z-index:10}.modal{background:#fff;border-radius:18px;width:min(560px,100%);padding:22px}.modal h2{margin-top:0}.form{display:grid;gap:11px}.form label{font-size:12px;color:var(--muted);font-weight:700}.form input,.form select,.form textarea{width:100%;padding:11px;border:1px solid var(--border);border-radius:10px;outline:none}.form textarea{min-height:80px;resize:vertical}.actions{display:flex;justify-content:flex-end;gap:8px;margin-top:8px}.chart{height:190px;display:flex;align-items:flex-end;gap:14px;padding:12px 8px}.bar{flex:1;display:flex;flex-direction:column;align-items:center;gap:7px;font-size:11px;color:var(--muted)}.bar i{width:100%;max-width:55px;background:#2b65d9;border-radius:8px 8px 2px 2px;display:block}.empty{color:var(--muted);padding:18px;text-align:center}.auth{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}.auth-card{width:min(430px,100%);background:#fff;border:1px solid var(--border);border-radius:20px;padding:24px;box-shadow:0 8px 30px rgba(20,40,80,.08)}.auth-card h1{margin:0 0 5px}.auth-card p{color:var(--muted)}.msg{padding:10px;border-radius:10px;background:#fff3d8;color:#8a5a00;margin:10px 0;font-size:13px}.userbar{display:flex;align-items:center;gap:8px}.logout{background:#ffe9ea;color:var(--red);padding:8px 10px;border-radius:10px;font-weight:700}@media(max-width:900px){.sidebar{width:72px}.brand{font-size:0}.brand:before{content:"AH";font-size:20px;font-weight:800}.brand small{display:none}.nav button{font-size:0;text-align:center}.nav button:first-letter{font-size:18px}.main{margin-left:72px}.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}}@media(max-width:600px){.main{padding:14px}.grid{grid-template-columns:1fr 1fr;gap:9px}.metric .value{font-size:18px}.top h1{font-size:20px}.role{font-size:11px}.sidebar{display:none}.main{margin-left:0}.two{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}}
+</style></head><body>
+<div id="auth" class="auth"><div class="auth-card"><h1>ANGKATAN HUB</h1><p>Keuangan & Operasional Angkatan</p><div id="authMsg" class="msg hidden"></div><div class="form"><label>Email<input id="email" type="email" placeholder="nama@email.com"></label><label>Password<input id="password" type="password" placeholder="Minimal 6 karakter"></label><button class="btn" onclick="login()">Masuk</button><button class="btn secondary" onclick="register()">Buat Akun</button></div><p style="font-size:12px">Akun pertama yang dibuat menjadi Admin.</p></div></div>
+<div id="app" class="app hidden"><aside class="sidebar"><div class="brand">ANGKATAN HUB<small>Keuangan & Operasional</small></div><div class="nav"><button class="active" onclick="showPage('dashboard',this)">🏠 Dashboard</button><button onclick="showPage('finance',this)">💰 Keuangan</button><button onclick="showPage('requests',this)">📋 Pengajuan Dana</button><button onclick="showPage('activities',this)">🎯 Kegiatan</button><button onclick="showPage('members',this)">👥 Anggota</button><button onclick="showPage('reports',this)">📊 Laporan</button></div></aside>
+<main class="main"><div class="top"><h1 id="pageTitle">Dashboard</h1><div class="userbar"><div class="role">Peran: <strong id="roleText">-</strong></div><button class="logout" onclick="logout()">Keluar</button></div></div>
+<section id="dashboard" class="page active"><div class="grid"><div class="card metric"><div class="label">Saldo Angkatan</div><div class="value" id="mSaldo">Rp0</div></div><div class="card metric"><div class="label">Total Pemasukan</div><div class="value green" id="mIn">Rp0</div></div><div class="card metric"><div class="label">Total Pengeluaran</div><div class="value red" id="mOut">Rp0</div></div><div class="card metric"><div class="label">Pengajuan Menunggu</div><div class="value orange" id="mWait">0</div></div></div><div class="two section"><div class="card"><div class="section-head"><h2>Kegiatan Berjalan</h2><button class="btn secondary" onclick="showPage('activities')">Lihat semua</button></div><div id="dashActivities" class="list"></div></div><div class="card"><div class="section-head"><h2>Pengajuan Terbaru</h2><button class="btn secondary" onclick="showPage('requests')">Buka</button></div><div id="dashRequests" class="list"></div></div></div></section>
+<section id="finance" class="page"><div class="section-head"><h2>Transaksi Keuangan</h2><div><button id="btnIncome" class="btn" onclick="openModal('income')">+ Pemasukan</button> <button id="btnExpense" class="btn danger" onclick="openModal('expense')">+ Pengeluaran</button></div></div><div class="card table-wrap"><table class="table"><thead><tr><th>Tanggal</th><th>Jenis</th><th>Keterangan</th><th>Kegiatan</th><th>Nominal</th></tr></thead><tbody id="txTable"></tbody></table></div></section>
+<section id="requests" class="page"><div class="section-head"><h2>Pengajuan Dana</h2><button class="btn" onclick="openModal('request')">+ Ajukan Dana</button></div><div id="requestList" class="list"></div></section>
+<section id="activities" class="page"><div class="section-head"><h2>Kegiatan Angkatan</h2><button id="btnActivity" class="btn" onclick="openModal('activity')">+ Kegiatan</button></div><div id="activityList" class="list"></div></section>
+<section id="members" class="page"><div class="section-head"><h2>Anggota Angkatan</h2></div><div class="card table-wrap"><table class="table"><thead><tr><th>Email</th><th>Nama</th><th>Peran</th><th>Aksi</th></tr></thead><tbody id="memberTable"></tbody></table></div></section>
+<section id="reports" class="page"><div class="grid"><div class="card metric"><div class="label">Pemasukan</div><div class="value green" id="rIn">Rp0</div></div><div class="card metric"><div class="label">Pengeluaran</div><div class="value red" id="rOut">Rp0</div></div><div class="card metric"><div class="label">Saldo Akhir</div><div class="value" id="rSaldo">Rp0</div></div><div class="card metric"><div class="label">Jumlah Transaksi</div><div class="value" id="rCount">0</div></div></div><div class="card section"><div class="section-head"><h2>Pengeluaran per Kegiatan</h2><button class="btn secondary" onclick="downloadReport()">Export CSV</button></div><div id="chart" class="chart"></div></div></section>
+</main></div>
 <div id="modalBg" class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal"><h2 id="modalTitle"></h2><div id="modalBody"></div></div></div>
-
-<script>
-const KEY='angkatanHubDataV1';
-const initial={
- transactions:[
-  {date:'05/09/2026',type:'in',desc:'Iuran anggota September',activity:'Umum',amount:5000000},
-  {date:'04/09/2026',type:'out',desc:'Konsumsi acara',activity:'Perpisahan Angkatan',amount:1200000},
-  {date:'03/09/2026',type:'out',desc:'Perlengkapan',activity:'Perpisahan Angkatan',amount:800000},
-  {date:'02/09/2026',type:'out',desc:'Dokumentasi',activity:'Perpisahan Angkatan',amount:500000},
-  {date:'01/09/2026',type:'out',desc:'Produksi awal',activity:'Buku Kenangan',amount:825000}
- ],
- activities:[
-  {name:'Perpisahan Angkatan',budget:5000000,spent:2500000,status:'Berjalan'},
-  {name:'Buku Kenangan',budget:3000000,spent:825000,status:'Berjalan'},
-  {name:'Jaket Angkatan',budget:2000000,spent:0,status:'Perencanaan'}
- ],
- requests:[
-  {activity:'Perpisahan Angkatan',division:'Acara',amount:1500000,purpose:'Sewa perlengkapan acara',status:'Menunggu'},
-  {activity:'Buku Kenangan',division:'Dokumentasi',amount:750000,status:'Disetujui',purpose:'Cetak contoh'},
-  {activity:'Jaket Angkatan',division:'Perlengkapan',amount:2000000,status:'Dicairkan',purpose:'Produksi awal'}
- ],
- members:[
-  ['Andi Pratama','Acara','Aktif'],['Budi Santoso','Humas','Aktif'],['Citra Amelia','Sekretariat','Aktif'],
-  ['Dina Putri','Dokumentasi','Aktif'],['Raka Wijaya','Perlengkapan','Aktif']
- ]};
-let data=JSON.parse(localStorage.getItem(KEY)||'null')||initial;
-function save(){localStorage.setItem(KEY,JSON.stringify(data))}
-function money(n){return 'Rp'+Number(n).toLocaleString('id-ID')}
-function totals(){let i=data.transactions.filter(x=>x.type==='in').reduce((a,x)=>a+x.amount,0),o=data.transactions.filter(x=>x.type==='out').reduce((a,x)=>a+x.amount,0);return{i,o,s:i-o}}
-function showPage(id,btn){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active');document.getElementById('pageTitle').textContent={dashboard:'Dashboard',finance:'Keuangan',requests:'Pengajuan Dana',activities:'Kegiatan',members:'Anggota',reports:'Laporan'}[id];render()}
-function render(){
- const t=totals(); document.getElementById('mSaldo').textContent=money(t.s);document.getElementById('mIn').textContent=money(t.i);document.getElementById('mOut').textContent=money(t.o);document.getElementById('mWait').textContent=data.requests.filter(x=>x.status==='Menunggu').length;
- document.getElementById('dashActivities').innerHTML=data.activities.filter(x=>x.status==='Berjalan').map(a=>{let p=a.budget?Math.min(100,Math.round(a.spent/a.budget*100)):0;return `<div class="row"><div><strong>${a.name}</strong><small>${money(a.spent)} / ${money(a.budget)}</small><div class="progress"><span style="width:${p}%"></span></div></div><b>${p}%</b></div>`}).join('')||'<div class="empty">Belum ada kegiatan.</div>';
- document.getElementById('dashRequests').innerHTML=data.requests.slice(-4).reverse().map(q=>`<div class="row"><div><strong>${q.activity}</strong><small>${q.division} • ${money(q.amount)}</small></div><span class="badge ${q.status==='Menunggu'?'wait':q.status==='Ditolak'?'no':'ok'}">${q.status}</span></div>`).join('');
- document.getElementById('txTable').innerHTML=data.transactions.slice().reverse().map(x=>`<tr><td>${x.date}</td><td class="${x.type==='in'?'green':'red'}">${x.type==='in'?'Pemasukan':'Pengeluaran'}</td><td>${x.desc}</td><td>${x.activity}</td><td class="${x.type==='in'?'green':'red'}">${x.type==='in'?'+':'-'}${money(x.amount)}</td></tr>`).join('');
- document.getElementById('requestList').innerHTML=data.requests.slice().reverse().map((q,i)=>`<div class="card"><div class="section-head"><div><h3 style="margin:0">${q.activity}</h3><small>${q.division} • ${money(q.amount)}</small></div><span class="badge ${q.status==='Menunggu'?'wait':q.status==='Ditolak'?'no':'ok'}">${q.status}</span></div><p>${q.purpose||''}</p>${q.status==='Menunggu'?'<div class="actions"><button class="btn danger" onclick="setRequest('+ (data.requests.length-1-i) +',\\'Ditolak\\')">Tolak</button><button class="btn success" onclick="setRequest('+ (data.requests.length-1-i) +',\\'Disetujui\\')">Setujui</button></div>':''}</div>`).join('');
- document.getElementById('activityList').innerHTML=data.activities.map((a,i)=>{let p=a.budget?Math.min(100,Math.round(a.spent/a.budget*100)):0;return `<div class="card"><div class="section-head"><div><h3 style="margin:0">${a.name}</h3><small>${a.status}</small></div><strong>${money(a.budget)}</strong></div><div>Terpakai ${money(a.spent)} • Sisa ${money(a.budget-a.spent)}</div><div class="progress"><span style="width:${p}%"></span></div></div>`}).join('');
- document.getElementById('memberTable').innerHTML=data.members.map(m=>`<tr><td>${m[0]}</td><td>${m[1]}</td><td><span class="badge ok">${m[2]}</span></td></tr>`).join('');
- document.getElementById('rIn').textContent=money(t.i);document.getElementById('rOut').textContent=money(t.o);document.getElementById('rSaldo').textContent=money(t.s);document.getElementById('rCount').textContent=data.transactions.length;
- let max=Math.max(1,...data.activities.map(a=>a.spent));document.getElementById('chart').innerHTML=data.activities.map(a=>`<div class="bar"><i style="height:${Math.max(8,a.spent/max*145)}px"></i><span>${a.name}</span><b>${money(a.spent)}</b></div>`).join('');
-}
-function openModal(type){
- const titles={income:'Tambah Pemasukan',expense:'Tambah Pengeluaran',request:'Ajukan Dana',activity:'Tambah Kegiatan'};document.getElementById('modalTitle').textContent=titles[type];
- let acts=data.activities.map(a=>`<option>${a.name}</option>`).join('');
- let body= type==='income'?`<div class="form"><label>Jumlah<input id="fAmount" type="number" placeholder="500000"></label><label>Tanggal<input id="fDate" type="date"></label><label>Sumber/Keterangan<input id="fDesc" placeholder="Iuran anggota"></label><button class="btn" onclick="addTx('in')">Simpan</button></div>`:
- type==='expense'?`<div class="form"><label>Kegiatan<select id="fAct">${acts}</select></label><label>Jumlah<input id="fAmount" type="number" placeholder="750000"></label><label>Tanggal<input id="fDate" type="date"></label><label>Keterangan<input id="fDesc" placeholder="Pembayaran konsumsi"></label><button class="btn" onclick="addTx('out')">Simpan</button></div>`:
- type==='request'?`<div class="form"><label>Kegiatan<select id="fAct">${acts}</select></label><label>Divisi<input id="fDiv" placeholder="Acara"></label><label>Jumlah<input id="fAmount" type="number"></label><label>Keperluan<textarea id="fDesc"></textarea></label><button class="btn" onclick="addRequest()">Kirim Pengajuan</button></div>`:
- `<div class="form"><label>Nama kegiatan<input id="fName"></label><label>Anggaran<input id="fAmount" type="number"></label><button class="btn" onclick="addActivity()">Simpan</button></div>`;
- document.getElementById('modalBody').innerHTML=body;document.getElementById('modalBg').style.display='flex';
-}
-function closeModal(){document.getElementById('modalBg').style.display='none'}
-function dateNow(){return new Date().toLocaleDateString('id-ID')}
-function addTx(type){let amount=+document.getElementById('fAmount').value;if(!amount)return alert('Masukkan jumlah.');let act=document.getElementById('fAct')?.value||'Umum';data.transactions.push({date:document.getElementById('fDate').value?new Date(document.getElementById('fDate').value).toLocaleDateString('id-ID'):dateNow(),type,desc:document.getElementById('fDesc').value||'-',activity:act,amount});if(type==='out'){let a=data.activities.find(x=>x.name===act);if(a)a.spent+=amount}save();closeModal();render()}
-function addRequest(){let amount=+document.getElementById('fAmount').value;if(!amount)return alert('Masukkan jumlah.');data.requests.push({activity:document.getElementById('fAct').value,division:document.getElementById('fDiv').value||'Umum',amount,purpose:document.getElementById('fDesc').value||'-',status:'Menunggu'});save();closeModal();render()}
-function addActivity(){let name=document.getElementById('fName').value.trim(),budget=+document.getElementById('fAmount').value;if(!name||!budget)return alert('Lengkapi data.');data.activities.push({name,budget,spent:0,status:'Perencanaan'});save();closeModal();render()}
-function setRequest(i,status){data.requests[i].status=status;save();render()}
-function downloadReport(){let lines=['Tanggal,Jenis,Keterangan,Kegiatan,Nominal',...data.transactions.map(x=>[x.date,x.type==='in'?'Pemasukan':'Pengeluaran',x.desc,x.activity,x.amount].map(v=>`"${String(v).replaceAll('"','""')}"`).join(','))];let blob=new Blob([lines.join('\\n')],{type:'text/csv'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='laporan-angkatan-hub.csv';a.click();URL.revokeObjectURL(a.href)}
-render();
-</script>
-</body>
-</html>
+<script type="module">
+// ================= FIREBASE CONFIG =================
+// Ganti nilai di bawah dengan firebaseConfig dari Firebase Console milikmu.
+const firebaseConfig={apiKey:"AIzaSyBip-3IIoI2fECSQm2pFpWZZXu9j2z8HsU",authDomain:"angkatan-hub.firebaseapp.com",projectId:"angkatan-hub",storageBucket:"angkatan-hub.firebasestorage.app",messagingSenderId:"562175484255",appId:"1:562175484255:web:b1af2ad3ed769678d6d6ea"};
+import {initializeApp} from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js';
+import {getAuth,onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword,signOut} from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js';
+import {getFirestore,collection,doc,getDoc,setDoc,addDoc,updateDoc,onSnapshot,query,orderBy,serverTimestamp,writeBatch} from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js';
+const appFb=initializeApp(firebaseConfig),auth=getAuth(appFb),db=getFirestore(appFb);
+let me=null,role='anggota',unsubs=[];let data={transactions:[],requests:[],activities:[],members:[]};
+const $=id=>document.getElementById(id); const money=n=>'Rp'+Number(n||0).toLocaleString('id-ID');
+function msg(t){$('authMsg').textContent=t;$('authMsg').classList.remove('hidden')}
+window.login=async()=>{try{await signInWithEmailAndPassword(auth,$('email').value.trim(),$('password').value)}catch(e){msg(e.message)}};
+window.register=async()=>{try{const email=$('email').value.trim(),password=$('password').value;if(!email||password.length<6){msg('Email dan password (minimal 6 karakter) wajib diisi.');return}const cred=await createUserWithEmailAndPassword(auth,email,password);const userRef=doc(db,'users',cred.user.uid),bootRef=doc(db,'settings','bootstrap');let isFirst=false;try{if(!(await getDoc(bootRef)).exists())isFirst=true}catch(_){}const batch=writeBatch(db);batch.set(userRef,{email,name:email.split('@')[0],role:isFirst?'admin':'anggota',createdAt:serverTimestamp()});if(isFirst)batch.set(bootRef,{uid:cred.user.uid,createdAt:serverTimestamp()});await batch.commit();msg(isFirst?'Akun pertama berhasil dibuat sebagai Admin.':'Akun berhasil dibuat sebagai Anggota.')}catch(e){msg(e.code==='auth/email-already-in-use'?'Email sudah terdaftar. Silakan masuk.':e.message)}};
+async function getRole(uid){const s=await getDoc(doc(db,'users',uid));if(!s.exists()){await setDoc(doc(db,'users',uid),{email:auth.currentUser.email,name:auth.currentUser.email.split('@')[0],role:'anggota',createdAt:serverTimestamp()});return'anggota'}return s.data().role||'anggota'}
+function canFinance(){return ['admin','ketua','bendahara'].includes(role)} function canApprove(){return ['admin','ketua'].includes(role)} function canActivity(){return ['admin','ketua','koordinator'].includes(role)}
+function watch(col,key){const q=query(collection(db,col),orderBy('createdAt','desc'));return onSnapshot(q,s=>{data[key]=s.docs.map(d=>({id:d.id,...d.data()}));render()})}
+function startWatch(){unsubs.forEach(f=>f&&f());unsubs=[watch('transactions','transactions'),watch('requests','requests'),watch('activities','activities'),watch('users','members')]}
+function totals(){const i=data.transactions.filter(x=>x.type==='in').reduce((a,x)=>a+Number(x.amount||0),0),o=data.transactions.filter(x=>x.type==='out').reduce((a,x)=>a+Number(x.amount||0),0);return{i,o,s:i-o}}
+function badge(s){return`<span class="badge ${s==='Menunggu'?'wait':s==='Ditolak'?'no':'ok'}">${s}</span>`}
+window.showPage=(id,btn)=>{document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active');$('pageTitle').textContent={dashboard:'Dashboard',finance:'Keuangan',requests:'Pengajuan Dana',activities:'Kegiatan',members:'Anggota',reports:'Laporan'}[id];render()}
+window.render=()=>{const t=totals();$('mSaldo').textContent=money(t.s);$('mIn').textContent=money(t.i);$('mOut').textContent=money(t.o);$('mWait').textContent=data.requests.filter(x=>x.status==='Menunggu').length;$('dashActivities').innerHTML=data.activities.filter(x=>x.status==='Berjalan').slice(0,4).map(a=>{let p=a.budget?Math.min(100,Math.round((a.spent||0)/a.budget*100)):0;return`<div class="row"><div><strong>${a.name}</strong><small>${money(a.spent)} / ${money(a.budget)}</small><div class="progress"><span style="width:${p}%"></span></div></div><b>${p}%</b></div>`}).join('')||'<div class="empty">Belum ada kegiatan.</div>';$('dashRequests').innerHTML=data.requests.slice(0,4).map(q=>`<div class="row"><div><strong>${q.activity}</strong><small>${q.division} • ${money(q.amount)}</small></div>${badge(q.status)}</div>`).join('')||'<div class="empty">Belum ada pengajuan.</div>';$('txTable').innerHTML=data.transactions.map(x=>`<tr><td>${x.date||''}</td><td class="${x.type==='in'?'green':'red'}">${x.type==='in'?'Pemasukan':'Pengeluaran'}</td><td>${x.desc||'-'}</td><td>${x.activity||'Umum'}</td><td class="${x.type==='in'?'green':'red'}">${x.type==='in'?'+':'-'}${money(x.amount)}</td></tr>`).join('');$('requestList').innerHTML=data.requests.map(q=>`<div class="card"><div class="section-head"><div><h3 style="margin:0">${q.activity}</h3><small>${q.division} • ${money(q.amount)}</small></div>${badge(q.status)}</div><p>${q.purpose||''}</p>${q.status==='Menunggu'&&canApprove()?`<div class="actions"><button class="btn danger" onclick="setRequest('${q.id}','Ditolak')">Tolak</button><button class="btn success" onclick="setRequest('${q.id}','Disetujui')">Setujui</button></div>`:''}</div>`).join('')||'<div class="empty">Belum ada pengajuan.</div>';$('activityList').innerHTML=data.activities.map(a=>{let p=a.budget?Math.min(100,Math.round((a.spent||0)/a.budget*100)):0;return`<div class="card"><div class="section-head"><div><h3 style="margin:0">${a.name}</h3><small>${a.status||'Perencanaan'}</small></div><strong>${money(a.budget)}</strong></div><div>Terpakai ${money(a.spent)} • Sisa ${money(Number(a.budget||0)-Number(a.spent||0))}</div><div class="progress"><span style="width:${p}%"></span></div></div>`}).join('')||'<div class="empty">Belum ada kegiatan.</div>';$('memberTable').innerHTML=data.members.map(m=>`<tr><td>${m.email||''}</td><td>${m.name||''}</td><td>${m.role||'anggota'}</td><td>${role==='admin'?`<button class="btn secondary" onclick="changeRole('${m.id}')">Ubah</button>`:''}</td></tr>`).join('');$('rIn').textContent=money(t.i);$('rOut').textContent=money(t.o);$('rSaldo').textContent=money(t.s);$('rCount').textContent=data.transactions.length;let max=Math.max(1,...data.activities.map(a=>Number(a.spent||0)));$('chart').innerHTML=data.activities.map(a=>`<div class="bar"><i style="height:${Math.max(8,Number(a.spent||0)/max*145)}px"></i><span>${a.name}</span><b>${money(a.spent)}</b></div>`).join('');$('btnIncome').classList.toggle('hidden',!canFinance());$('btnExpense').classList.toggle('hidden',!canFinance());$('btnActivity').classList.toggle('hidden',!canActivity())}
+window.openModal=type=>{const titles={income:'Tambah Pemasukan',expense:'Tambah Pengeluaran',request:'Ajukan Dana',activity:'Tambah Kegiatan'};$('modalTitle').textContent=titles[type];const acts=data.activities.map(a=>`<option>${a.name}</option>`).join('');$('modalBody').innerHTML=type==='income'?`<div class="form"><label>Jumlah<input id="fAmount" type="number"></label><label>Tanggal<input id="fDate" type="date"></label><label>Sumber/Keterangan<input id="fDesc" placeholder="Iuran anggota"></label><button class="btn" onclick="addTx('in')">Simpan</button></div>`:type==='expense'?`<div class="form"><label>Kegiatan<select id="fAct">${acts}</select></label><label>Jumlah<input id="fAmount" type="number"></label><label>Tanggal<input id="fDate" type="date"></label><label>Keterangan<input id="fDesc"></label><button class="btn" onclick="addTx('out')">Simpan</button></div>`:type==='request'?`<div class="form"><label>Kegiatan<select id="fAct">${acts}</select></label><label>Divisi<input id="fDiv"></label><label>Jumlah<input id="fAmount" type="number"></label><label>Keperluan<textarea id="fDesc"></textarea></label><button class="btn" onclick="addRequest()">Kirim Pengajuan</button></div>`:`<div class="form"><label>Nama kegiatan<input id="fName"></label><label>Anggaran<input id="fAmount" type="number"></label><button class="btn" onclick="addActivity()">Simpan</button></div>`;$('modalBg').style.display='flex'};window.closeModal=()=>{$('modalBg').style.display='none'};
+window.addTx=async type=>{const amount=Number($('fAmount').value);if(!amount)return alert('Masukkan jumlah.');const act=$('fAct')?.value||'Umum';await addDoc(collection(db,'transactions'),{type,amount,activity:act,desc:$('fDesc').value||'-',date:$('fDate').value||new Date().toLocaleDateString('id-ID'),createdBy:me.uid,createdAt:serverTimestamp()});if(type==='out'){const a=data.activities.find(x=>x.name===act);if(a)await updateDoc(doc(db,'activities',a.id),{spent:Number(a.spent||0)+amount})}closeModal()};window.addRequest=async()=>{const amount=Number($('fAmount').value);if(!amount)return alert('Masukkan jumlah.');await addDoc(collection(db,'requests'),{activity:$('fAct').value,division:$('fDiv').value||'Umum',amount,purpose:$('fDesc').value||'-',status:'Menunggu',createdBy:me.uid,createdAt:serverTimestamp()});closeModal()};window.addActivity=async()=>{const name=$('fName').value.trim(),budget=Number($('fAmount').value);if(!name||!budget)return alert('Lengkapi data.');await addDoc(collection(db,'activities'),{name,budget,spent:0,status:'Perencanaan',createdBy:me.uid,createdAt:serverTimestamp()});closeModal()};window.setRequest=async(id,status)=>{if(canApprove())await updateDoc(doc(db,'requests',id),{status})};window.changeRole=async id=>{const r=prompt('Role: admin / ketua / bendahara / koordinator / anggota','anggota');if(['admin','ketua','bendahara','koordinator','anggota'].includes(r))await updateDoc(doc(db,'users',id),{role:r})};window.downloadReport=()=>{let lines=['Tanggal,Jenis,Keterangan,Kegiatan,Nominal',...data.transactions.map(x=>[x.date,x.type==='in'?'Pemasukan':'Pengeluaran',x.desc,x.activity,x.amount].map(v=>`"${String(v??'').replaceAll('"','""')}"`).join(','))];let blob=new Blob([lines.join('\n')],{type:'text/csv'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='laporan-angkatan-hub.csv';a.click()}
+onAuthStateChanged(auth,async user=>{if(!user){$('auth').classList.remove('hidden');$('app').classList.add('hidden');return}me=user;role=await getRole(user.uid);$('roleText').textContent=role;$('auth').classList.add('hidden');$('app').classList.remove('hidden');startWatch();render()});
+</script></body></html>
