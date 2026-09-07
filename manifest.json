@@ -1,0 +1,10 @@
+{
+  "name": "Angkatan Hub",
+  "short_name": "Angkatan Hub",
+  "description": "Aplikasi pengelolaan keuangan dan kegiatan angkatan.",
+  "start_url": "/angkatan-hub/",
+  "scope": "/angkatan-hub/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#123b86"
+}
