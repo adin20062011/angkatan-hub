@@ -6,8 +6,8 @@
   "scope": "/angkatan-hub/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#123b86"
-  "icons": [
+  "theme_color": "#123b86",
+"icons": [
   {
     "src": "launchericon-192×192.png",
     "sizes": "192x192",
