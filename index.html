@@ -259,5 +259,11 @@ onAuthStateChanged(auth,async user=>{
  try{me=user;profile=await ensureProfile(user);role=profile.role||'anggota';mode=role==='admin'?'admin':role;$('auth').classList.add('hidden');$('app').classList.remove('hidden');startWatch();render()}
  catch(e){console.error(e);await signOut(auth);showMsg('Profil Firebase belum dapat dibaca. Pastikan Firestore Rules sudah diperbarui.')}
 });
+</script><script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js');
+  });
+}
 </script>
 </body></html>
